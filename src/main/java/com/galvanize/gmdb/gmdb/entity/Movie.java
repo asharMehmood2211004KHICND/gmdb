@@ -3,12 +3,7 @@ package com.galvanize.gmdb.gmdb.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 
 @Entity
 // @Table(name = "movie_table")
@@ -72,12 +67,8 @@ public class Movie {
     private String yearReleased;
     private String runTime;
     private String genre;
-//    @OneToMany(
-//
-//    )
-//    private List<Review> movieReviews = new ArrayList<>();
-
-
+    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+    private List<Review> movieReviews = new ArrayList<>();
 
 
     @Override
