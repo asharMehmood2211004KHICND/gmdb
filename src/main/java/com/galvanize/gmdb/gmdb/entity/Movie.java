@@ -72,12 +72,14 @@ public class Movie {
     private String yearReleased;
     private String runTime;
     private String genre;
-    @OneToMany(
-        
-    )
-    private List<Review> movieReviews = new ArrayList<>(); 
+//    @OneToMany(
+//
+//    )
+//    private List<Review> movieReviews = new ArrayList<>();
 
-    
+
+
+
     @Override
     public String toString() {
         return "Movie [movieId=" + movieId + ", movieTitle=" + movieTitle + ", yearReleased=" + yearReleased

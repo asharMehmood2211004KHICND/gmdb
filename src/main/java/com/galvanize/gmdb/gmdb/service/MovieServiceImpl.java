@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.galvanize.gmdb.gmdb.entity.Movie;
 import com.galvanize.gmdb.gmdb.repository.MovieRepository;
 
+import java.util.List;
+
 @Service
 public class MovieServiceImpl implements MovieService{
 
@@ -17,5 +19,15 @@ public class MovieServiceImpl implements MovieService{
         // TODO Auto-generated method stub
         return movieRepository.save(movie);
     }
-    
+
+    @Override
+    public List<Movie> fetchMovieList() {
+        return  movieRepository.findAll();
+    }
+
+    @Override
+    public Movie fetchMovieById(Long movieId) {
+        return movieRepository.findById(movieId).get();
+    }
+
 }
