@@ -7,12 +7,18 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Data
+
 @Entity
 public class Review {
+    public Review(long reviewId, String reviewText, Movie movie) {
+        this.reviewId = reviewId;
+        this.reviewText = reviewText;
+        this.movie = movie;
+    }
+
+    public Review() {
+    }
+
     public long getReviewId() {
         return reviewId;
     }
@@ -30,8 +36,12 @@ public class Review {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long reviewId;
     private String reviewText;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_movie_id")
+    private Movie movie;
 
 }

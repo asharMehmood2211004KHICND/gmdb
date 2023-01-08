@@ -9,15 +9,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+
+
 @Entity
 @ToString
 // @Table(name = "movie_table")
 public class Movie {
-   
-    
+    public Movie(long movieId, String movieTitle, String yearReleased, String runTime, String genre, List<Review> reviewList) {
+        this.movieId = movieId;
+        this.movieTitle = movieTitle;
+        this.yearReleased = yearReleased;
+        this.runTime = runTime;
+        this.genre = genre;
+        this.reviewList = reviewList;
+    }
+
+    public Movie() {
+    }
 //    public Movie(long movieId, String movieTitle, String yearReleased, String runTime, String genre) {
 //        this.movieId = movieId;
 //        this.movieTitle = movieTitle;
@@ -83,7 +91,7 @@ public class Movie {
     //     allocationSize = 1
     // )
     @GeneratedValue(
-        //strategy = GenerationType.AUTO
+        strategy = GenerationType.AUTO
         //generator = "student_sequence"
     )
     private long movieId;
@@ -94,9 +102,10 @@ public class Movie {
 
     private String runTime;
     private String genre;
+                                                        //mappedBy="movie"
+    @OneToMany( cascade = CascadeType.ALL)
+//    @JoinColumn(name = "movie_review_fk",referencedColumnName = "movieId")
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_review_fk",referencedColumnName = "movieId")
     private List<Review> reviewList;
 
 //    @Override
