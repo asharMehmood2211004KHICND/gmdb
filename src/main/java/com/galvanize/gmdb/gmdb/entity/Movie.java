@@ -3,6 +3,7 @@ package com.galvanize.gmdb.gmdb.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -94,6 +95,7 @@ public class Movie {
         strategy = GenerationType.AUTO
         //generator = "student_sequence"
     )
+    @Column(name="MOVIE_ID")
     private long movieId;
 
     private String movieTitle;
@@ -102,10 +104,13 @@ public class Movie {
 
     private String runTime;
     private String genre;
-                                                        //mappedBy="movie"
-    @OneToMany( cascade = CascadeType.ALL)
-//    @JoinColumn(name = "movie_review_fk",referencedColumnName = "movieId")
 
+
+    @OneToMany( mappedBy = "movie",targetEntity=Review.class,cascade = CascadeType.ALL
+            )
+    //    @OneToMany(mappedBy="movie",targetEntity=Review.class)
+//    @JoinColumn(name = "movie_review_fk",referencedColumnName = "movieId")
+    //@JsonIgnore                                                        //mappedBy="movie"
     private List<Review> reviewList;
 
 //    @Override

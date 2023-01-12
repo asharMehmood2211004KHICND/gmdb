@@ -1,5 +1,7 @@
 package com.galvanize.gmdb.gmdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,13 +37,38 @@ public class Review {
         this.reviewText = reviewText;
     }
 
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long reviewId;
     private String reviewText;
 
+    public Reviewer getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(Reviewer reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    //    @ManyToOne @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JoinColumn(name = "movie_id")
+//    private Movie movie;
     @ManyToOne
-    @JoinColumn(name = "movie_movie_id")
+    @JoinColumn(name="MOVIE_ID",referencedColumnName="MOVIE_ID")
+    @JsonIgnore
     private Movie movie;
+
+    @ManyToOne
+    @JoinColumn(name="REVIEWER_ID",referencedColumnName="REVIEWER_ID")
+    @JsonIgnore
+    private Reviewer reviewer;
 
 }

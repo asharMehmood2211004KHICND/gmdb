@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReviewService {
 
-    public Review saveReview(Review review);
+    public void saveReview(Review review);
 
     public  void saveReviewList(List<Review> reviewList);
 

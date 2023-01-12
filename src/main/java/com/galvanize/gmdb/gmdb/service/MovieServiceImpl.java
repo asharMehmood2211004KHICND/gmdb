@@ -22,6 +22,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<Movie> fetchMovieList() {
+//        System.out.println(movieRepository.findById(1));
         return  movieRepository.findAll();
     }
 

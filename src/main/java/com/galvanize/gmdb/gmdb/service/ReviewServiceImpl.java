@@ -14,10 +14,13 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Autowired
     private ReviewRepository reviewRepository;
+    @Autowired
+    private MovieRepository movieRepository;
 
     @Override
-    public Review saveReview(Review review) {
-        return  reviewRepository.save(review);
+    public void saveReview(Review review) {
+
+          reviewRepository.save(review);
     }
 
     @Override
